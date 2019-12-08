@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD target/url-shortner-service.jar url-shortner-service.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "url-shortner-service.jar"] 

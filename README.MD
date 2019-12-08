@@ -40,3 +40,12 @@ is: 839 quadrillion what is pretty much acceptable number.
 | number of successful forward by short url request                                      | /actuator/metrics/url.request.forward.to.full.url.success |
 | number of unsuccessful forward by short url request                                    | /actuator/metrics/url.request.forward.to.full.url.failed  |
 | value in percentage, how many short URLs out of all available random values was used   | /actuator/metrics/unique.values.used.percentage           |
+
+## Distribution
+This application distributed as docker image. Docker instructions located in `dockerFile` in project root.
+
+### pulling image 
+Image can be pulled with the command `docker pull avkabanov/url-shortner-service:1.0`
+
+### running application
+Application can be launched with the following command: `docker run -p 8080:8080 avkabanov/url-shortner-service:1.0`

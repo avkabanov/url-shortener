@@ -12,6 +12,7 @@
         <version>2.1.4.RELEASE</version>
     </parent>
     <build>
+        <finalName>url-shortner-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
