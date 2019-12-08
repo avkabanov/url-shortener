@@ -15,22 +15,25 @@ import com.kabanov.shortner.domain.UrlObject;
 public class UrlCache {
 
     private UrlRepository urlRepository;
+    private long numberOfRepositoryObjects;
 
     @Autowired
     public UrlCache(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
+        numberOfRepositoryObjects = urlRepository.count();
     }
 
     public UrlObject save(UrlObject urlObject) throws DuplicateShortUrlException {
         try {
-            return urlRepository.save(urlObject);
+            UrlObject result = urlRepository.save(urlObject);
+            numberOfRepositoryObjects++;
+            return result;
         } catch (DataIntegrityViolationException e) {
             if (isShortUrlException(e)) {
                 throw new DuplicateShortUrlException(urlObject.getShortUrl());
             } else {
                 throw e;
             }
-
         }
     }
 
@@ -46,5 +49,9 @@ public class UrlCache {
 
     public Optional<UrlObject> getUrlObjectByShortUrl(String shortUrl) {
         return urlRepository.findByShortUrl(shortUrl);
+    }
+    
+    public long getNumberOfShortUrls(){
+        return urlRepository.count();
     }
 }

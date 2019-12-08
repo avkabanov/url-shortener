@@ -23,8 +23,8 @@ public class UrlCacheTest {
     public void shouldThrowExceptionOnAddingExistingShortUrl() throws DuplicateShortUrlException {
         final String shortUrl = "randomUrl";
         
-        urlCache.save(new UrlObject("google.com", shortUrl, 1));
-        urlCache.save(new UrlObject("yahoo.com.uk", shortUrl, 1));
+        urlCache.save(new UrlObject("google.com", shortUrl));
+        urlCache.save(new UrlObject("yahoo.com.uk", shortUrl));
     }
 
 }

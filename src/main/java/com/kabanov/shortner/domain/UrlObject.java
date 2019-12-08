@@ -24,17 +24,12 @@ public class UrlObject {
     @Column(unique = true, name = "shortUrl")
     private String shortUrl;
     
-    // TODO do i need it?
-    @Column(name = "shortHash")
-    private int shortUrlHash;
-
     public UrlObject() {
     }
 
-    public UrlObject(String fullUrl, String shortUrl, int shortUrlHash) {
+    public UrlObject(String fullUrl, String shortUrl) {
         this.fullUrl = fullUrl;
         this.shortUrl = shortUrl;
-        this.shortUrlHash = shortUrlHash;
     }
 
     public UUID getUuid() {
@@ -59,13 +54,5 @@ public class UrlObject {
 
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
-    }
-
-    public int getShortUrlHash() {
-        return shortUrlHash;
-    }
-
-    public void setShortUrlHash(int shortUrlHash) {
-        this.shortUrlHash = shortUrlHash;
     }
 }

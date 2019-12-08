@@ -1,2 +1,7 @@
 app-properties:
   short-url-length: 10
+
+
+endpoints:
+  prometheus:
+    enabled: true

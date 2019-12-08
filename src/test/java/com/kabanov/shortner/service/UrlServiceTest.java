@@ -23,21 +23,20 @@ import com.kabanov.shortner.domain.UrlObject;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class UrlServiceTest {
     
-    @Autowired UrlService urlService;
-    @MockBean UrlCache urlCache;
-    @SpyBean ShortUrlGenerator shortUrlGenerator;
+    @Autowired private UrlService urlService;
+    @MockBean private UrlCache urlCache;
+    @SpyBean private ShortUrlGenerator shortUrlGenerator;
     
     @Test
     public void shouldRegenerateUrlOnDuplicateShortUId() throws DuplicateShortUrlException {
         Mockito.when(urlCache.save(Mockito.any()))
                 .thenThrow(new DuplicateShortUrlException("duplicate"))
-                .thenReturn(new UrlObject("google.com", "someShortUrl", 1));
-        ;
+                .thenReturn(new UrlObject("google.com", "someShortUrl"));
+        
 
         ShortenUrlRequest shortenUrlRequest = new ShortenUrlRequest("google.com");
         urlService.createShortUrl(shortenUrlRequest);
         
         Mockito.verify(shortUrlGenerator, Mockito.times(2)).generate();
     }
-    
 }

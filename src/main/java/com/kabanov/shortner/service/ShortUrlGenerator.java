@@ -16,4 +16,9 @@ public class ShortUrlGenerator {
     public String generate() {
         return RandomStringUtils.randomAlphanumeric(shortUrlSize);
     }
+    
+    public long getMaxNumberPossibleUniqueValues() {
+        // 26 lowercase letter, 26 uppercase letter, 10 digits  
+        return (long)Math.pow(26 + 26 + 10, shortUrlSize); 
+    }
 }

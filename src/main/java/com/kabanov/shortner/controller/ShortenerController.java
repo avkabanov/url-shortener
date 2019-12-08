@@ -16,6 +16,8 @@ import com.kabanov.shortner.controller.request.ShortenUrlRequest;
 import com.kabanov.shortner.domain.UrlObject;
 import com.kabanov.shortner.service.UrlService;
 
+import io.micrometer.core.instrument.Metrics;
+
 /**
  * @author Kabanov Alexey
  */
@@ -34,6 +36,7 @@ public class ShortenerController {
     @PostMapping(path = "/short")
     @ResponseBody
     public ResponseEntity<String> createShortUrl(@Valid @RequestBody ShortenUrlRequest shortenUrlRequest) {
+        Metrics.counter("url.request.create.short.url").increment();
         UrlObject result = urlService.createShortUrl(shortenUrlRequest);
         return new ResponseEntity<>(result.getShortUrl(), HttpStatus.CREATED);
     }
